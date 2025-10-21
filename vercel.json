@@ -1,8 +1,6 @@
 {
-  "functions": {
-    "index.html": {
-      "runtime": "@vercel/static"
-    }
-  }
+  "public": true,
+  "buildCommand": "echo 'Static site - no build required'",
+  "outputDirectory": "public"
 }
 

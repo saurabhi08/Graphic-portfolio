@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brochure Design Viewer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .viewer-container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .viewer-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .viewer-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-indicator {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .pdf-viewer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background: #f8f9fa;
+        }
+
+        .nav-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-dots {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        .dot:hover {
+            background: #667eea;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .viewer-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .pdf-viewer {
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .viewer-header h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="viewer-container">
+        <div class="viewer-header">
+            <h1 id="pageTitle">School Course Brochure</h1>
+            <div class="page-indicator">
+                Brochure <span id="currentPage">1</span> of <span id="totalPages">3</span>
+            </div>
+        </div>
+
+        <div class="pdf-viewer">
+            <div class="loading" id="loading">
+                <i class="fas fa-spinner"></i> Loading...
+            </div>
+            <iframe id="pdfFrame" style="display: none;"></iframe>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="previousPage()">
+                <i class="fas fa-chevron-left"></i>
+                Previous
+            </button>
+            
+            <div class="page-dots" id="pageDots"></div>
+            
+            <button class="nav-btn" id="nextBtn" onclick="nextPage()">
+                Next
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Brochures configuration
+        const brochures = [
+            {
+                title: "School Course Brochure",
+                file: "B2C_WH-LHPT Brochure-IN-MUM-PR-WK163.pdf"
+            },
+            {
+                title: "School Course Brochure - Real Estate",
+                file: "Brochure_NYUT-CLSE_5-09-2023_V11.pdf"
+            },
+            {
+                title: "Financial Sector Brochure",
+                file: "Financial Sector.pdf"
+            }
+        ];
+
+        let currentPageIndex = 0;
+        const totalPages = brochures.length;
+
+        // Initialize
+        document.getElementById('totalPages').textContent = totalPages;
+        createDots();
+        loadPage(0);
+
+        // Create page dots
+        function createDots() {
+            const dotsContainer = document.getElementById('pageDots');
+            dotsContainer.innerHTML = '';
+            
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === currentPageIndex) {
+                    dot.classList.add('active');
+                }
+                dot.onclick = () => loadPage(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Load specific page
+        function loadPage(index) {
+            if (index < 0 || index >= totalPages) return;
+            
+            currentPageIndex = index;
+            const brochure = brochures[index];
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('pdfFrame').style.display = 'none';
+            
+            // Update content
+            document.getElementById('pageTitle').textContent = brochure.title;
+            document.getElementById('currentPage').textContent = index + 1;
+            document.getElementById('pdfFrame').src = brochure.file;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (index === 0);
+            document.getElementById('nextBtn').disabled = (index === totalPages - 1);
+            
+            // Update dots
+            updateDots();
+            
+            // Hide loading when iframe loads
+            document.getElementById('pdfFrame').onload = function() {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('pdfFrame').style.display = 'block';
+            };
+        }
+
+        // Update dots
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === currentPageIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Navigation functions
+        function nextPage() {
+            if (currentPageIndex < totalPages - 1) {
+                loadPage(currentPageIndex + 1);
+            }
+        }
+
+        function previousPage() {
+            if (currentPageIndex > 0) {
+                loadPage(currentPageIndex - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextPage();
+            } else if (e.key === 'ArrowLeft') {
+                previousPage();
+            }
+        });
+    </script>
+</body>
+</html>
+
