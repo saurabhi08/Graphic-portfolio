@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Saurabhi's Design Portfolio Website",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site - served by Vercel'"
+  },
+  "keywords": ["portfolio", "design", "graphic-design", "web-development"],
+  "author": "Saurabhi Surve",
+  "license": "MIT"
+}

@@ -6,9 +6,9 @@ const projects = [
         category: "graphic",
         description: "Professional brochure designs for school courses and financial sectors.",
         fullDescription: "A collection of professionally designed brochures including school course brochures and financial sector materials. Each brochure showcases attention to detail, brand consistency, and effective communication of key messages through compelling visual layouts.",
-        image: "imgs/brochures/cover.png",
+        image: "./imgs/brochures/cover.png",
         tech: ["Adobe Illustrator", "Photoshop", "Print Design", "Layout Design"],
-        liveLink: "imgs/brochures/viewer.html",
+        liveLink: "./imgs/brochures/viewer.html",
         codeLink: null
     },
     {
@@ -17,17 +17,17 @@ const projects = [
         category: "graphic",
         description: "Series of engaging social media posts for special occasions and campaigns.",
         fullDescription: "A diverse collection of eye-catching social media graphics designed for various occasions including national holidays, awareness campaigns, and special events. Each design features unique visuals and compelling messaging tailored to engage audiences across social media platforms.",
-        image: "imgs/social media/Post-3.jpg",
+        image: "./imgs/social media/Post-3.jpg",
         gallery: [
-            "imgs/social media/Post-3.jpg",
-            "imgs/social media/post-11.jpg",
-            "imgs/social media/Independance-Day-2021.jpg",
-            "imgs/social media/Republic-Day-2022(ssg).jpg",
-            "imgs/social media/Mahindra-Defence-Women's-Day-2022.jpg",
-            "imgs/social media/Army-day_2021(option-3).jpg",
-            "imgs/social media/Airforce-Day.jpg",
-            "imgs/social media/Covid-creative.jpg",
-            "imgs/social media/Fraud-Awareness.jpg"
+            "./imgs/social media/Post-3.jpg",
+            "./imgs/social media/post-11.jpg",
+            "./imgs/social media/Independance-Day-2021.jpg",
+            "./imgs/social media/Republic-Day-2022(ssg).jpg",
+            "./imgs/social media/Mahindra-Defence-Women's-Day-2022.jpg",
+            "./imgs/social media/Army-day_2021(option-3).jpg",
+            "./imgs/social media/Airforce-Day.jpg",
+            "./imgs/social media/Covid-creative.jpg",
+            "./imgs/social media/Fraud-Awareness.jpg"
         ],
         tech: ["Photoshop", "Illustrator", "Social Media Design"],
         liveLink: null,
@@ -39,9 +39,9 @@ const projects = [
         category: "web",
         description: "Interactive bubble wrap popping game built with HTML, CSS, and JavaScript.",
         fullDescription: "A fun and addictive endless bubble wrap popping game featuring realistic pop sounds and smooth animations. Built entirely with vanilla JavaScript, HTML5, and CSS3, this interactive web game provides a satisfying user experience with responsive design and audio feedback. Perfect for stress relief and entertainment!",
-        image: "EndlessBubbleWrap/mockup.png",
+        image: "./EndlessBubbleWrap/mockup.png",
         tech: ["HTML5", "CSS3", "JavaScript", "Interactive Design"],
-        liveLink: "EndlessBubbleWrap/index.html",
+        liveLink: "./EndlessBubbleWrap/index.html",
         codeLink: null
     },
     {
@@ -50,9 +50,9 @@ const projects = [
         category: "web",
         description: "Modern UI designs including Home, About Us, and Cyber Security pages.",
         fullDescription: "A comprehensive UI design collection featuring three professionally designed pages: Home Page, About Us, and Cyber Security. Each page showcases modern design principles with clean layouts and engaging visuals. Navigate through all pages using the interactive viewer with next/previous controls.",
-        image: "imgs/website/cover.png",
+        image: "./imgs/website/cover.png",
         tech: ["UI/UX Design", "Visual Design", "Web Design"],
-        liveLink: "imgs/website/viewer.html",
+        liveLink: "./imgs/website/viewer.html",
         codeLink: null
     },
     {
@@ -61,10 +61,10 @@ const projects = [
         category: "graphic",
         description: "Professional table calendar design for HDFC with creative layouts and branding.",
         fullDescription: "A comprehensive table calendar design project for HDFC created in 2020. This calendar features carefully crafted monthly layouts with attention to typography, spacing, and brand consistency. Each page is designed to be both functional and visually appealing, incorporating the company's brand elements throughout.",
-        image: "imgs/calender/cover.png",
-        pdfFile: "imgs/calender/HDFC Calendar 2020(new1)_13thdec2019.pdf",
+        image: "./imgs/calender/cover.png",
+        pdfFile: "./imgs/calender/HDFC Calendar 2020(new1)_13thdec2019.pdf",
         tech: ["Illustrator", "Photoshop", "Print Design", "Calendar Design"],
-        liveLink: "imgs/calender/HDFC Calendar 2020(new1)_13thdec2019.pdf",
+        liveLink: "./imgs/calender/HDFC Calendar 2020(new1)_13thdec2019.pdf",
         codeLink: null
     },
     {
@@ -73,13 +73,13 @@ const projects = [
         category: "graphic",
         description: "Creative digital illustrations and artwork including sketches, wedding designs, and night scenes.",
         fullDescription: "A diverse collection of digital artwork showcasing various artistic styles and techniques. Includes detailed sketches, wedding illustrations, night scene artwork, and creative invitations. Each piece demonstrates artistic creativity and technical skill in digital media.",
-        image: "imgs/digital art/Wedding-Illustration.jpg",
+        image: "./imgs/digital art/Wedding-Illustration.jpg",
         gallery: [
-            "imgs/digital art/Wedding-Illustration.jpg",
-            "imgs/digital art/wedding-invite(new).jpg",
-            "imgs/digital art/Night-Scene.jpg",
-            "imgs/digital art/sketch 1.jpg",
-            "imgs/digital art/sketch 2.jpg"
+            "./imgs/digital art/Wedding-Illustration.jpg",
+            "./imgs/digital art/wedding-invite(new).jpg",
+            "./imgs/digital art/Night-Scene.jpg",
+            "./imgs/digital art/sketch 1.jpg",
+            "./imgs/digital art/sketch 2.jpg"
         ],
         tech: ["Digital Art", "Illustration", "Photoshop", "Creative Design"],
         liveLink: null,
