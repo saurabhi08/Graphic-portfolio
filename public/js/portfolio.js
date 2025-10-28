@@ -97,6 +97,9 @@ const modal = document.getElementById('projectModal');
 const modalClose = document.getElementById('modalClose');
 const modalBody = document.getElementById('modalBody');
 const contactForm = document.getElementById('contactForm');
+const imageModal = document.getElementById('imageModal');
+const imageModalClose = document.getElementById('imageModalClose');
+const imageViewerImg = document.getElementById('imageViewerImg');
 
 // ========== Mobile Navigation Toggle ==========
 navToggle.addEventListener('click', () => {
@@ -224,9 +227,9 @@ function openModal(project) {
     modalBody.innerHTML = `
         ${hasGallery ? `
             <div class="project-gallery">
-                ${project.gallery.map(img => `
-                    <div class="gallery-item">
-                        <img src="${img}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                ${project.gallery.map((img, index) => `
+                    <div class="gallery-item" style="cursor: pointer;" onclick="openImageViewer('${img}', '${project.title}')">
+                        <img src="${img}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;">
                     </div>
                 `).join('')}
             </div>
@@ -321,6 +324,44 @@ document.getElementById('contactModal').addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && document.getElementById('contactModal').classList.contains('active')) {
         closeContactModal();
+    }
+});
+
+// ========== Image Viewer Functions ==========
+function openImageViewer(imageSrc, imageAlt) {
+    if (imageViewerImg && imageModal) {
+        imageViewerImg.src = imageSrc;
+        imageViewerImg.alt = imageAlt || 'Gallery Image';
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeImageViewer() {
+    if (imageModal) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close image modal
+if (imageModalClose) {
+    imageModalClose.addEventListener('click', closeImageViewer);
+}
+
+// Close image modal when clicking outside
+if (imageModal) {
+    imageModal.addEventListener('click', (e) => {
+        if (e.target === imageModal) {
+            closeImageViewer();
+        }
+    });
+}
+
+// Close image modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && imageModal && imageModal.classList.contains('active')) {
+        closeImageViewer();
     }
 });
 
