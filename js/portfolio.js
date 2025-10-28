@@ -207,6 +207,11 @@ filterButtons.forEach(button => {
 
 // ========== Open Modal with Project Details ==========
 function openModal(project) {
+    console.log('Opening modal for:', project.title); // Debug log
+    
+    // Clear previous modal content
+    modalBody.innerHTML = '';
+    
     const icon = project.category === 'web' 
         ? '<i class="fas fa-laptop-code"></i>' 
         : '<i class="fas fa-palette"></i>';
