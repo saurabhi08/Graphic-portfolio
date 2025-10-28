@@ -163,6 +163,13 @@ body {
     background-clip: text;
 }
 
+.hero-subtitle-main {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
 .hero-subtitle {
     font-size: 1.25rem;
     color: var(--text-secondary);
