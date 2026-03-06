@@ -15,6 +15,7 @@ const projects = [
         id: 2,
         title: "Social Media Graphics",
         category: "graphic",
+        featured: true,
         description: "Series of engaging social media posts for special occasions and campaigns.",
         fullDescription: "A diverse collection of eye-catching social media graphics designed for various occasions including national holidays, awareness campaigns, and special events. Each design features unique visuals and compelling messaging tailored to engage audiences across social media platforms.",
         image: "./imgs/social media/Post-3.jpg",
@@ -59,6 +60,7 @@ const projects = [
         id: 5,
         title: "Calendar Design",
         category: "graphic",
+        featured: true,
         description: "Professional table calendar design for HDFC with creative layouts and branding.",
         fullDescription: "A comprehensive table calendar design project for HDFC created in 2020. This calendar features carefully crafted monthly layouts with attention to typography, spacing, and brand consistency. Each page is designed to be both functional and visually appealing, incorporating the company's brand elements throughout.",
         image: "./imgs/calender/cover.png",
@@ -71,6 +73,7 @@ const projects = [
         id: 6,
         title: "Digital Art",
         category: "graphic",
+        featured: true,
         description: "Creative digital illustrations and artwork including sketches, wedding designs, and night scenes.",
         fullDescription: "A diverse collection of digital artwork showcasing various artistic styles and techniques. Includes detailed sketches, wedding illustrations, night scene artwork, and creative invitations. Each piece demonstrates artistic creativity and technical skill in digital media.",
         image: "./imgs/digital art/Wedding-Illustration.jpg",
@@ -93,6 +96,7 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectsGrid = document.getElementById('projectsGrid');
+const featuredWorkContainer = document.getElementById('featuredWork');
 const modal = document.getElementById('projectModal');
 const modalClose = document.getElementById('modalClose');
 const modalBody = document.getElementById('modalBody');
@@ -141,6 +145,40 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
     }
 });
+
+// ========== Render Projects ==========
+function renderFeaturedWork() {
+    if (!featuredWorkContainer) return;
+    const featuredProjects = projects.filter(p => p.featured === true);
+    if (featuredProjects.length === 0) return;
+
+    featuredWorkContainer.innerHTML = '';
+    featuredProjects.forEach((project, index) => {
+        const card = document.createElement('div');
+        card.className = 'featured-card';
+        const icon = project.category === 'web'
+            ? '<i class="fas fa-laptop-code"></i>'
+            : '<i class="fas fa-palette"></i>';
+        const tagText = project.category === 'web' ? 'Web Design' : 'Graphic Design';
+        card.innerHTML = `
+            <span class="featured-badge">Featured</span>
+            <div class="project-image">
+                ${project.image ? `<img src="${project.image}" alt="${project.title}">` : icon}
+                <span class="project-tag">${tagText}</span>
+            </div>
+            <div class="project-info">
+                <h3 class="project-title">${project.title}</h3>
+                <p class="project-description">${project.description}</p>
+                <div class="project-tech">
+                    ${project.tech.slice(0, 3).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        card.addEventListener('click', () => openModal(project));
+        card.style.animationDelay = `${index * 0.1}s`;
+        featuredWorkContainer.appendChild(card);
+    });
+}
 
 // ========== Render Projects ==========
 function renderProjects(filter = 'all') {
@@ -439,7 +477,7 @@ function animateSkillBars() {
 
 // ========== Scroll Reveal Animation ==========
 function revealOnScroll() {
-    const reveals = document.querySelectorAll('.project-card, .skill-category, .about-content');
+    const reveals = document.querySelectorAll('.project-card, .featured-card, .skill-category, .about-content');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -460,7 +498,7 @@ function revealOnScroll() {
 
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', () => {
-    // Render all projects initially
+    renderFeaturedWork();
     renderProjects('all');
     
     // Initialize animations
