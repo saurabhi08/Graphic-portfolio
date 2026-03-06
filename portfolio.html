@@ -21,7 +21,7 @@
             </button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#featured" class="nav-link">Featured Work</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -29,70 +29,43 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="gradient-text">Saurabhi Surve</span>
-            </h1>
-            <h2 class="hero-subtitle-main">Creative Graphic Designer & Developer</h2>
-            <p class="hero-subtitle">Crafting beautiful digital experiences through graphic design and web design</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <!-- Hero / Header Section -->
+    <header id="home" class="hero header-section">
+        <div class="hero-bg-shapes" aria-hidden="true">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+            <div class="hero-shape hero-shape-3"></div>
+            <div class="hero-shape hero-shape-4"></div>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-profile-wrap">
+                <img src="./imgs/profile.png" alt="Saurabhi Surve" class="hero-profile-img">
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Saurabhi Surve</span>
+                </h1>
+                <span class="hero-title-underline"></span>
+                <h2 class="hero-subtitle-main">Creative <span class="hero-subtitle-accent">Graphic Designer</span> & <span class="hero-subtitle-accent">Developer</span></h2>
+                <p class="hero-subtitle">Crafting beautiful digital experiences through graphic design and web design</p>
+                <div class="hero-bio">
+                    <p>I specialize in graphic and web design with experience in corporate and agency environments. I combine creativity with functionality to deliver clear, engaging visual solutions.</p>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#featured" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
             </div>
         </div>
-        <div class="hero-scroll">
-            <span>Scroll Down</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Featured Work Section -->
+    <section id="featured" class="featured-work-section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="./imgs/profile.png" alt="Profile Picture" class="profile-img">
-                </div>
-                <div class="about-text">
-                    <h3>Hello! I'm Saurabhi Surve, a Passionate Graphic Designer & Developer</h3>
-                    <p>With a keen eye for aesthetics and a passion for creating engaging digital experiences, I specialize in both graphic design and web design. I have experience working in both corporate and advertising agency environments, bringing diverse perspectives to every project. My work combines creativity with functionality to deliver stunning visual solutions.</p>
-                    <p>I believe in the power of good design to communicate ideas, evoke emotions, and drive results. Whether it's building responsive websites or creating eye-catching graphics, I approach each project with dedication and attention to detail.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <div class="stat-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <span class="stat-number" data-target="10">0</span>
-                            <span class="stat-label">Projects Completed</span>
-                            <div class="stat-progress">
-                                <div class="progress-bar" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-icon">
-                                <i class="fas fa-certificate"></i>
-                            </div>
-                            <span class="stat-number" data-target="4">0</span>
-                            <span class="stat-label">Certifications & Courses</span>
-                            <div class="stat-progress">
-                                <div class="progress-bar" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-icon">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <span class="stat-number" data-target="5">0</span>
-                            <span class="stat-label">Years Experience</span>
-                            <div class="stat-progress">
-                                <div class="progress-bar" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h2 class="section-title">Featured Work</h2>
+            <p class="section-subtitle">A few projects I'm especially proud of</p>
+            <div class="featured-grid" id="featuredWork">
+                <!-- Featured projects loaded by JS -->
             </div>
         </div>
     </section>
